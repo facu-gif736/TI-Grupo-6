@@ -1,4 +1,8 @@
 import React from 'react';
+import Card from '../components/Card/Card';
+
+class Home extends Component {
+        constructor(props)
 
 function Home() { 
     return (

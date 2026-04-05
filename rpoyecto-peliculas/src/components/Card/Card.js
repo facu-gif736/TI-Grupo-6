@@ -43,7 +43,7 @@ class Card extends Component {
                     <Link to={`/detalle/${id}`} className="btn btn-primary btn-sm">Ir a detalle</Link>
                     
                     
-                    <button className="btn alert-primary btn-sm ml-2">♥️</button>
+                    <button className="btn alert-primary btn-sm ml-2"></button>
                 </div>
             </article>
         );

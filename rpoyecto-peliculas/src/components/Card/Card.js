@@ -27,7 +27,7 @@ class Card extends Component {
                 <div className="cardBody">
                     <h5 className="card-title">{titulo}</h5>
                     
-                    
+                   
                     <button className="btn btn-sm btn-info mb-2" onClick={this.toggleDescripcion}>
                         {this.state.verDescripcion ? 'Ocultar descripción' : 'Ver descripción'}
                     </button>
@@ -39,7 +39,9 @@ class Card extends Component {
 
                     <br />
                     
+                    
                     <Link to={`/detalle/${id}`} className="btn btn-primary btn-sm">Ir a detalle</Link>
+                    
                     
                     <button className="btn alert-primary btn-sm ml-2">♥️</button>
                 </div>

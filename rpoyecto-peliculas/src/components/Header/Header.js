@@ -7,7 +7,6 @@ function Header() {
     return (
         <header>
             <h1>UdeSA Movies</h1> 
-            
             <nav>
                 <ul className="nav nav-tabs my-4">
                     <li className="nav-item">
@@ -19,6 +18,7 @@ function Header() {
                     <li className="nav-item">
                         <Link className="nav-link" to="/series">Series</Link>
                     </li>
+                    {estaLogueado ? (
                         <li className="nav-item">
                             <Link className="nav-link" to="/favoritos">Favoritas</Link>
                         </li>

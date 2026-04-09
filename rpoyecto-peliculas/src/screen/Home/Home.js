@@ -17,7 +17,7 @@ class Home extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    peliculasPopulares: data.results.slice(0, 5),
+                    peliculasPopulares: data.results.slice(0, 8),
                     cargando: false
                 });
             })

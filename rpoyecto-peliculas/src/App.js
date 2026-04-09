@@ -3,6 +3,9 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
 import Home from './screen/Home/Home.js';
+import Detalle from './screen/Detalle/Detalle.js';
+import Registro from './screen/Registro/Registro.js';
+import Login from './screen/Login/Login.js';
 
 function App () {
   return (
@@ -10,6 +13,9 @@ function App () {
       <Header />
       <Switch>
         <Route path="/" exact="true" component={Home} />
+        <Route path="/pelicula/:id" component={Detalle} />
+        <Route path="/registro" component={Registro} />
+        <Route path="/login" component={Login} />
       </Switch>
       <Footer />
     </BrowserRouter>

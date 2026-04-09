@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from '../components/Card/Card.js';
+import Card from '../../components/Card/Card.js';
 
 class Home extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Home extends Component {
     componentDidMount() {
         const apikey = '80bdeef7a104f2ba9ac2f12c79d50e7b';
 
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey}`)
             .then(response => response.json())
             .then(data => {
                 this.setState({

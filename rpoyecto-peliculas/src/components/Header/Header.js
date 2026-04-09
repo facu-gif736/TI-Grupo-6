@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Header() {
-    const estaLogueado = false; 
 
     return (
         <header>
@@ -18,20 +17,15 @@ function Header() {
                     <li className="nav-item">
                         <Link className="nav-link" to="/series">Series</Link>
                     </li>
-                    {estaLogueado ? (
-                        <li className="nav-item">
+                    <li className="nav-item">
                             <Link className="nav-link" to="/favoritos">Favoritas</Link>
+                    </li>
+                        <li className="nav-item ml-auto">
+                            <Link className="nav-link" to="/registro">Registro</Link>
                         </li>
-                    ) : (
-                        <React.Fragment>
-                            <li className="nav-item ml-auto">
-                                <Link className="nav-link" to="/registro">Registro</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">Login</Link>
-                            </li>
-                        </React.Fragment>
-                    )}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/login">Login</Link>
+                        </li>
                 </ul>
             </nav>
         </header>

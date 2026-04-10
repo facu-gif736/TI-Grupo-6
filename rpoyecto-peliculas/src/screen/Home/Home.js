@@ -49,7 +49,9 @@ class Home extends Component {
                         />
                 </form>
                 <h2>Películas populares</h2>
-
+                {this.state.cargando ? (
+                    <h3>Cargando...</h3>
+                ) : (
                 <section className="row">
                     {this.state.peliculasPopulares.map((pelicula, idx) => (
                         <Card
@@ -62,6 +64,7 @@ class Home extends Component {
                     ))}
                     
                 </section>
+                )}
             </div>
         );
     }

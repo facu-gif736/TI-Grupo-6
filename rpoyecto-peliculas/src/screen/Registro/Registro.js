@@ -11,7 +11,7 @@ class Registro extends Component {
     }
 
     ControlarCambiosEmail(event) {
-        this.SetState({
+        this.setState({
             email: event.target.value
         });
     }
@@ -49,9 +49,8 @@ class Registro extends Component {
 
         arrayUsuarios.push(usuarioNuevo);
         localStorage.setItem('usuarios', JSON.stringify(arrayUsuarios));
-        localStorage.setItem('usuarioLogueado', this.state.email);
         this.setState({errorMensaje: ''});
-        this.props.history.push('/');
+        this.props.history.push('/login');
     }
 
     render() {
@@ -78,7 +77,7 @@ class Registro extends Component {
                         <input 
                             type="password" 
                             className="form-control" 
-                            onChange={(event) => this.controlarCambiosPassword(event)} 
+                            onChange={(event) => this.ControlarCambiosPassword(event)} 
                             value={this.state.password} 
                             required
                         />

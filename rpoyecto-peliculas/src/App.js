@@ -6,6 +6,8 @@ import Home from './screen/Home/Home.js';
 import Detalle from './screen/Detalle/Detalle.js';
 import Registro from './screen/Registro/Registro.js';
 import Login from './screen/Login/Login.js';
+import Favoritos from './screen/Favoritos/Favoritos.js';
+import Cartelera from './screen/Cartelera/Cartelera.js';
 
 function App () {
   return (
@@ -16,6 +18,8 @@ function App () {
         <Route path="/pelicula/:id" component={Detalle} />
         <Route path="/registro" component={Registro} />
         <Route path="/login" component={Login} />
+        <Route path="/favoritos" component={Favoritos} />
+        <Route path="/cartelera" component={Cartelera} />
       </Switch>
       <Footer />
     </BrowserRouter>

@@ -42,8 +42,8 @@ class Login extends Component {
         let usuarioValido = arrayUsuarios.filter( usuario => usuario.email === this.state.email && usuario.password === this.state.password);
 
         if (usuarioValido.length > 0) {
-             cookies.set('user-auth', this.state.email, {path: '/'});
-             this.props.history.push('/');
+             cookies.set('usuarioLogueado', this.state.email, {path: '/'});
+             window.location.href = '/';
          } else {
              this.setState({ errorMensaje: 'Credenciales incorrectas' });
          }

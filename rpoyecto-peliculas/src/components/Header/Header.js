@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies()
 
 function Header() {
-
+    const usuarioLogueado = cookies.get('user-auth')
+    
     return (
         <header>
             <h1>UdeSA Movies</h1> 
@@ -17,6 +21,9 @@ function Header() {
                     <li className="nav-item">
                         <Link className="nav-link" to="/series">Series</Link>
                     </li>
+                    
+
+                        
                     <li className="nav-item">
                             <Link className="nav-link" to="/favoritos">Favoritas</Link>
                     </li>

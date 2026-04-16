@@ -66,9 +66,6 @@ class Home extends Component {
                 </div>
                 <div className='mb-5'>
                     <h2>Películas Populares</h2>
-                        <Link to="/ver-todas/populares" className="btn btn-outline-primary">
-                            Ver todas 
-                        </Link>
                         {this.state.cargandoPopulares ? (
                             <h3>Cargando en Populares...</h3>
                         ) : (
@@ -81,17 +78,16 @@ class Home extends Component {
                                 titulo={pelicula.title}
                                 descripcion={pelicula.overview}
                             />
-                        ))}
-                        
+                        ))}   
                     </section>
                     )}
+                    <Link to="/ver-todas/populares" className="btn btn-outline-primary">
+                            Ver todas 
+                    </Link>
                 </div>
 
                 <div className='mb-5'>
                     <h2>Peliculas en Cartelera</h2>
-                    <Link to="/ver-todas/cartelera" className="btn btn-outline-primary">
-                                Ver todas 
-                    </Link>
                     {this.state.cargandoCartelera ? (
                         <h3>Cargando en Cartelera...</h3>
                     ) : (
@@ -107,6 +103,9 @@ class Home extends Component {
                         ))}
                     </section>
                     )}
+                    <Link to="/ver-todas/cartelera" className="btn btn-outline-primary">
+                                Ver todas 
+                    </Link>
                 </div>
             </div>
         );

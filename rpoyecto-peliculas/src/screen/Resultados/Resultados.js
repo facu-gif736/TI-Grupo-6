@@ -13,7 +13,7 @@ class Resultados extends Component {
 
     componentDidMount() {
         const busqueda = this.props.match.params.termino;
-        const apiKey = '80bdeef7a104f2ba9ac2f12c79d50e7b'; // Reemplaza con tu propia clave de API
+        const apiKey = '80bdeef7a104f2ba9ac2f12c79d50e7b'; 
         this.setState({ terminoBuscado: busqueda})
 
         fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${busqueda}`)

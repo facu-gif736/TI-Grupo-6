@@ -35,7 +35,6 @@ function Header() {
                             <li className="nav-item ml-auto">
                                 <button 
                                     className="nav-link btn btn-link" 
-                                    style={{textDecoration: 'none'}} 
                                     onClick={() => cerrarSesion()}
                                 >
                                     Cerrar Sesión

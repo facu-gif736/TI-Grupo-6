@@ -26,7 +26,7 @@ class Detalle extends Component {
     }
 
     agregarFavoritos () {
-        alert("PElicula agregada a favoritos!");
+        alert("Pelicula agregada a favoritos!");
     }
 
     render() {

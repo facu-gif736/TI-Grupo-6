@@ -20,19 +20,21 @@ class Favoritos extends Component {
                 this.setState({cargando: false});
                 return;
             }
+                        let favoritas = []; 
+                        arrayIds.map(id => {
+                            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                   favoritas = favoritas.concat(data);
+                                    this.setState({
+                                        peliculasFavoritas: favoritas,
+                                        cargando: false
+                                    
+                                    })
+                                })
 
-            for(let i = 0; i < arrayIds.length; i++) {
-                let id = arrayIds[i];
-                fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        this.setState({
-                            peliculasFavoritas: this.state.peliculasFavoritas.concat(data),
-                            cargando: false
-                        });
-                    })
-                    .catch(error => console.log('El error fue: ' + error));
-                        }
+                        })
+
                     } else {
                         this.setState({cargando: false});
                     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Card from '../../components/Card/Card.js';
 import { Link } from 'react-router-dom';
+import Populares from '../Populares/Populares.js';
+import Cartelera from '../Cartelera/Cartelera.js';
 
 class Home extends Component {
     constructor(props) {
@@ -81,7 +83,7 @@ class Home extends Component {
                         ))}   
                     </section>
                     )}
-                    <Link to="/ver-todas/populares" className="btn btn-outline-primary">
+                    <Link to="/populares" className="btn btn-outline-primary">
                             Ver todas 
                     </Link>
                 </div>
@@ -103,7 +105,7 @@ class Home extends Component {
                         ))}
                     </section>
                     )}
-                    <Link to="/ver-todas/cartelera" className="btn btn-outline-primary">
+                    <Link to="/cartelera" className="btn btn-outline-primary">
                                 Ver todas 
                     </Link>
                 </div>

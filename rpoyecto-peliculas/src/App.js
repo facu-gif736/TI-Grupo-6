@@ -9,6 +9,7 @@ import Login from './screen/Login/Login.js';
 import Favoritos from './screen/Favoritos/Favoritos.js';
 import Cartelera from './screen/Cartelera/Cartelera.js';
 import Populares from './screen/Populares/Populares.js';
+import Resultados from './screen/Resultados/Resultados.js';
 
 function App () {
   return (
@@ -22,6 +23,7 @@ function App () {
         <Route path="/favoritos" component={Favoritos} />
         <Route path="/cartelera" component={Cartelera} />
         <Route path="/populares" component={Populares} />
+        <Route path="/resultados/:tipo/:busqueda" component={Resultados} />
       </Switch>
       <Footer />
     </BrowserRouter>

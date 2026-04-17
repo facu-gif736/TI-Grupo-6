@@ -12,7 +12,8 @@ class Home extends Component {
             peliculasCartelera: [],
             cargandoPopulares: true,
             cargandoCartelera: true,
-            valorBuscador: ''
+            valorBuscador: '',
+            tipoBusqueda: 'movie'
         };
     }
 
@@ -51,19 +52,52 @@ class Home extends Component {
         })
     }
 
+    controlarCambiosBuscador(event) {
+        this.setState({
+            valorBuscador: event.target.value
+        });
+    }
+
+    controlarCambiosTipo(event) {
+        this.setState({
+            tipoBusqueda: event.target.value
+        });
+    }
+
+    enviarBusqueda(event) {
+        event.preventDefault();
+
+        if (this.state.valorBuscador !== '') {
+            this.props.history.push(`/resultados/${this.state.tipoBusqueda}/${this.state.valorBuscador}`);
+        }
+    }
+
     render() {
         return (
             <div className= "container mt-4">
                 <div className='mb-5'>
                     <h2>Buscador</h2>
-                    <form onSubmit = {event => this.evitarSubmit(event)} className="mb-5">
-                        <input
-                            type="text"
-                            onChange= {event => this.controlarCambios(event)}
-                            value={this.state.valorBuscador}
-                            placeholder="Buscar pelicula..."
-                            className="form-control"
-                        />
+                    <form onSubmit={(event) => this.enviarBusqueda(event)}>
+                        <div className="d-flex mb-4">
+                            <input 
+                                type="text" 
+                                className="form-control" 
+                                placeholder="Buscar..." 
+                                onChange={(event) => this.controlarCambiosBuscador(event)}
+                                value={this.state.valorBuscador}
+                            />
+        
+                            <select 
+                                className="form-control mx-2" 
+                                onChange={(event) => this.controlarCambiosTipo(event)}
+                                value={this.state.tipoBusqueda}
+                            >
+                            <option value="movie">Películas</option>
+                            <option value="tv">Series</option>
+                            </select>
+        
+                            <button type="submit" className="btn btn-primary">Buscar</button>
+                        </div>
                     </form>
                 </div>
                 <div className='mb-5'>

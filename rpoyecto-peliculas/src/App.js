@@ -10,6 +10,7 @@ import Favoritos from './screen/Favoritos/Favoritos.js';
 import Cartelera from './screen/Cartelera/Cartelera.js';
 import Populares from './screen/Populares/Populares.js';
 import Resultados from './screen/Resultados/Resultados.js';
+import NotFound from './screen/NotFound/NotFound.js';
 
 function App () {
   return (
@@ -24,6 +25,7 @@ function App () {
         <Route path="/cartelera" component={Cartelera} />
         <Route path="/populares" component={Populares} />
         <Route path="/resultados/:tipo/:busqueda" component={Resultados} />
+        <Route component={NotFound} />
       </Switch>
       <Footer />
     </BrowserRouter>

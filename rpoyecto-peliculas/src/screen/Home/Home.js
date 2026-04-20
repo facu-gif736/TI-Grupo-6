@@ -125,7 +125,7 @@ class Home extends Component {
                     <div className="mb-5">
                         <div className="d-flex justify-content-between align-items-center mb-4">
                             <h2>Películas Populares</h2>
-                            <Link to="/peliculas" className="btn btn-outline-primary">Ver todas</Link>
+                            <Link to="/cartelera" className="btn btn-outline-primary">Ver todas</Link>
                         </div>
                         <hr />
 

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Header from '../../components/Header/Header.js';
+import Footer from '../../components/Footer/Footer.js';
 import Card from '../../components/Card/Card.js';
 
 class Resultados extends Component {
@@ -34,6 +37,8 @@ class Resultados extends Component {
 
     render() {
         return (
+        <React.Fragment>
+            <Header />
             <div className="container mt-5">
                 <h2>Resultados de búsqueda: {this.props.match.params.busqueda}</h2>
                 <hr />
@@ -63,6 +68,8 @@ class Resultados extends Component {
                     )
                 )}
             </div>
+            <Footer />
+        </React.Fragment>
         );
     }
 }

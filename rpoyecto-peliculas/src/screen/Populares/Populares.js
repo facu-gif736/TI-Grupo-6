@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Card from '../../components/Card/Card.js';
+import { Link } from 'react-router-dom';
+import Header from '../../components/Header/Header.js';
+import Footer from '../../components/Footer/Footer.js';
 
 class Populares extends Component {
     constructor(props) {
@@ -24,6 +27,8 @@ class Populares extends Component {
 
     render() {
         return (
+        <React.Fragment>
+            <Header />
             <div className="container mt-5">
                 <h2 className="mb-4">Peliculas Populares</h2>
                 {this.state.cargando ? (
@@ -42,6 +47,8 @@ class Populares extends Component {
                     </section>
                 )}
             </div>
+            <Footer />
+        </React.Fragment>
         );
     }
 }

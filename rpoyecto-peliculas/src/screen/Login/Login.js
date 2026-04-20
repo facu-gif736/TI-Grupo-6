@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const cookies = new Cookies();
 
@@ -12,8 +15,6 @@ class Login extends Component {
             errorMensaje: '' 
         };
     }
-
-
 
     ControlarCambiosEmail(event) {
         this.setState({
@@ -43,17 +44,18 @@ class Login extends Component {
 
         if (usuarioValido.length > 0) {
              cookies.set('usuarioLogueado', this.state.email, {path: '/'});
-             window.location.href = '/';
+            this.props.history.push('/');
          } else {
              this.setState({ errorMensaje: 'Credenciales incorrectas' });
          }
         }
         
-        
-
     render() {
         return (
-            <div className="container mt-5">
+            <React.Fragment>
+                <Header />
+
+                <div className="container mt-5">
                 <h2>Iniciar Sesión</h2>
                 
                 {this.state.errorMensaje ? (
@@ -84,12 +86,10 @@ class Login extends Component {
                     <button type="submit">Ingresar</button>
                 </form>
             </div>
+            <Footer />
+            </React.Fragment>
         );
     }
 }
-
-
-
-
 
 export default Login;

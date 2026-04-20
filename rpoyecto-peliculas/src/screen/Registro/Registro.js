@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+
+const cookies = new Cookies();
 
 class Registro extends Component {
     constructor(props) {
@@ -49,12 +55,15 @@ class Registro extends Component {
 
         arrayUsuarios.push(usuarioNuevo);
         localStorage.setItem('usuarios', JSON.stringify(arrayUsuarios));
+        cookies.set('usuarioLogueado', this.state.email, {path: '/'});
         this.setState({errorMensaje: ''});
         this.props.history.push('/login');
     }
 
     render() {
         return (
+            <React.Fragment>
+                <Header />
             <div className="container mt-5">
                 <h2>Crear Cuenta</h2>
                 {this.state.errorMensaje ? (
@@ -86,6 +95,8 @@ class Registro extends Component {
                     <button type="submit" className="btn btn-primary">Registrarse</button>
                 </form>
             </div>
+            <Footer />
+            </React.Fragment>
         )
     }
 }

@@ -1,72 +1,64 @@
 import React, { Component } from 'react';
-import Card from '../../components/Card/Card.js';
 import { Link } from 'react-router-dom';
-import Populares from '../Populares/Populares.js';
-import Cartelera from '../Cartelera/Cartelera.js';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Card from '../../components/Card/Card';
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state= {
-            peliculasPopulares: [],
+        this.state = {
             peliculasCartelera: [],
-            cargandoPopulares: true,
-            cargandoCartelera: true,
+            peliculasPopulares: [],
             valorBuscador: '',
-            tipoBusqueda: 'movie'
+            tipoBusqueda: 'movie',
+            cargandoCartelera: true,
+            cargandoPopulares: true
         };
     }
 
     componentDidMount() {
-        const apikey = '80bdeef7a104f2ba9ac2f12c79d50e7b';
+        const apiKey = '80bdeef7a104f2ba9ac2f12c79d50e7b';
 
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey}`)
-            .then(response => response.json())
+        fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`)
+            .then(res => res.json())
             .then(data => {
+                let resultadosCartelera = [];
+                if (data.results !== undefined) {
+                    resultadosCartelera = data.results.slice(0, 4);
+                }
                 this.setState({
-                    peliculasPopulares: data.results.slice(0, 8),
-                    cargandoPopulares: false
-                });
-            })
-            .catch(error => console.log('El error fue: ' + error)); 
-
-        fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}`)
-            .then(response => response.json())
-            .then(data => {
-                this.setState ({
-                    peliculasCartelera: data.results.slice(0, 8),
+                    peliculasCartelera: resultadosCartelera,
                     cargandoCartelera: false
                 });
             })
-            .catch(error => console.log('El error fue: ' + error));
-    }
+            .catch(err => console.log(err));
 
-    evitarSubmit(event) {
-        event.preventDefault();
-        console.log("El usuario buscó:", this.state.valorBuscador);
-    }
-
-    controlarCambios(event) {
-        this.setState({
-            valorBuscador: event.target.value
-        })
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+            .then(res => res.json())
+            .then(data => {
+                let resultadosPopulares = [];
+                if (data.results !== undefined) {
+                    resultadosPopulares = data.results.slice(0, 4);
+                }
+                this.setState({
+                    peliculasPopulares: resultadosPopulares,
+                    cargandoPopulares: false
+                });
+            })
+            .catch(err => console.log(err));
     }
 
     controlarCambiosBuscador(event) {
-        this.setState({
-            valorBuscador: event.target.value
-        });
+        this.setState({ valorBuscador: event.target.value });
     }
 
     controlarCambiosTipo(event) {
-        this.setState({
-            tipoBusqueda: event.target.value
-        });
+        this.setState({ tipoBusqueda: event.target.value });
     }
 
     enviarBusqueda(event) {
-        event.preventDefault();
-
+        event.preventDefault(); 
         if (this.state.valorBuscador !== '') {
             this.props.history.push(`/resultados/${this.state.tipoBusqueda}/${this.state.valorBuscador}`);
         }
@@ -74,76 +66,89 @@ class Home extends Component {
 
     render() {
         return (
-            <div className= "container mt-4">
-                <div className='mb-5'>
-                    <h2>Buscador</h2>
+            <React.Fragment>
+                <Header />
+                
+                <div className="container mt-5">
+                    
+                    {/* Buscador */}
                     <form onSubmit={(event) => this.enviarBusqueda(event)}>
-                        <div className="d-flex mb-4">
+                        <div className="d-flex mb-5">
                             <input 
                                 type="text" 
                                 className="form-control" 
-                                placeholder="Buscar..." 
+                                placeholder="Buscar películas o series..." 
                                 onChange={(event) => this.controlarCambiosBuscador(event)}
                                 value={this.state.valorBuscador}
                             />
-        
+                            
                             <select 
                                 className="form-control mx-2" 
+                                style={{ width: '150px' }}
                                 onChange={(event) => this.controlarCambiosTipo(event)}
                                 value={this.state.tipoBusqueda}
                             >
-                            <option value="movie">Películas</option>
-                            <option value="tv">Series</option>
+                                <option value="movie">Películas</option>
+                                <option value="tv">Series</option>
                             </select>
-        
+                            
                             <button type="submit" className="btn btn-primary">Buscar</button>
                         </div>
                     </form>
-                </div>
-                <div className='mb-5'>
-                    <h2>Películas Populares</h2>
-                        {this.state.cargandoPopulares ? (
-                            <h3>Cargando en Populares...</h3>
-                        ) : (
-                    <section className="row">
-                        {this.state.peliculasPopulares.map((pelicula, idx) => (
-                            <Card
-                                key={pelicula.id + idx}
-                                id={pelicula.id}
-                                imagen={pelicula.poster_path}
-                                titulo={pelicula.title}
-                                descripcion={pelicula.overview}
-                            />
-                        ))}   
-                    </section>
-                    )}
-                    <Link to="/populares" className="btn btn-outline-primary">
-                            Ver todas 
-                    </Link>
-                </div>
 
-                <div className='mb-5'>
-                    <h2>Peliculas en Cartelera</h2>
-                    {this.state.cargandoCartelera ? (
-                        <h3>Cargando en Cartelera...</h3>
-                    ) : (
-                    <section className="row">
-                        {this.state.peliculasCartelera.map((pelicula, idx) => (
-                            <Card
-                                key={pelicula.id + idx}
-                                id={pelicula.id}
-                                imagen={pelicula.poster_path}
-                                titulo={pelicula.title}
-                                descripcion={pelicula.overview}
-                            />
-                        ))}
-                    </section>
-                    )}
-                    <Link to="/cartelera" className="btn btn-outline-primary">
-                                Ver todas 
-                    </Link>
+                    {/* Cartelera */}
+                    <div className="mb-5">
+                        <div className="d-flex justify-content-between align-items-center mb-4">
+                            <h2>Películas en Cartelera</h2>
+                            <Link to="/cartelera" className="btn btn-outline-primary">Ver todas</Link>
+                        </div>
+                        <hr />
+
+                        {this.state.cargandoCartelera ? (
+                            <h3>Cargando cartelera...</h3>
+                        ) : (
+                            <section className="row">
+                                {this.state.peliculasCartelera.map((pelicula, idx) => (
+                                    <Card 
+                                        key={pelicula.id + idx}
+                                        id={pelicula.id}
+                                        titulo={pelicula.title}
+                                        imagen={pelicula.poster_path}
+                                        descripcion={pelicula.overview}
+                                    />
+                                ))}
+                            </section>
+                        )}
+                    </div>
+
+                    {/* Populares */}
+                    <div className="mb-5">
+                        <div className="d-flex justify-content-between align-items-center mb-4">
+                            <h2>Películas Populares</h2>
+                            <Link to="/peliculas" className="btn btn-outline-primary">Ver todas</Link>
+                        </div>
+                        <hr />
+
+                        {this.state.cargandoPopulares ? (
+                            <h3>Cargando populares...</h3>
+                        ) : (
+                            <section className="row">
+                                {this.state.peliculasPopulares.map((pelicula, idx) => (
+                                    <Card 
+                                        key={pelicula.id + idx}
+                                        id={pelicula.id}
+                                        titulo={pelicula.title}
+                                        imagen={pelicula.poster_path}
+                                        descripcion={pelicula.overview}
+                                    />
+                                ))}
+                            </section>
+                        )}
+                    </div>
+
                 </div>
-            </div>
+                <Footer />
+            </React.Fragment>
         );
     }
 }

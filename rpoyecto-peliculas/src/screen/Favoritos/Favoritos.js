@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Card from '../../components/Card/Card.js';
+import { Link } from 'react-router-dom';
+import Header from '../../components/Header/Header.js';
+import Footer from '../../components/Footer/Footer.js';
 
 class Favoritos extends Component {
     constructor(props) {
@@ -42,7 +45,9 @@ class Favoritos extends Component {
 
         render() {
         return (
-            <div className="container mt-5">
+            <React.Fragment>
+                <Header />
+                <div className="container mt-5">
                 <h2>Mis Favoritos</h2>
                 <hr />
                 {this.state.cargando ? (
@@ -69,6 +74,8 @@ class Favoritos extends Component {
                     )
                 )}
             </div>
+            <Footer />
+            </React.Fragment>
         );
     }
 }

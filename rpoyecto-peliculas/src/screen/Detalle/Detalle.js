@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 class Detalle extends Component {
     constructor(props) {
@@ -32,6 +35,8 @@ class Detalle extends Component {
     render() {
         const estaLogueado = localStorage.getItem('usuarioLogueado') !== null;
         return (
+            <React.Fragment>
+                <Header />
             <div className="container mt-5">
                 {this.state.cargando ? (
                     <h3>Cargando...</h3>
@@ -70,6 +75,8 @@ class Detalle extends Component {
             </div>
         )}
         </div>
+        <Footer />
+        </React.Fragment>
         );
     }    
 }

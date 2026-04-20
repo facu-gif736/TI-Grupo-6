@@ -18,16 +18,28 @@ class Header extends Component {
     }
 
     render() {
+        const estiloNav = {
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            backgroundColor:'#eee',
+            borderRadius: '4px',
+            marginBottom:'20px'
+        }
+        const estiloEnlace = {
+            margin: '0',
+            color: '#444',
+            textdecoration: 'none'
+        }
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav style={estiloNav} className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
                     <Link className="navbar-brand" to="/">UdeSA Movies</Link>
                     <div className="navbar-nav">
-                        <Link className="nav-link" to="/">Home</Link>
+                        <Link className="nav-link" style={estiloEnlace} to="/">Home</Link>
                         
                         {this.state.usuario ? (
                             <React.Fragment>
-                                <Link className="nav-link" to="/favoritos">Favoritas</Link>
+                                <Link className="nav-link" style={estiloEnlace} to="/favoritos">Favoritas</Link>
                                 <button 
                                     className="nav-link btn btn-link" 
                                     onClick={() => this.cerrarSesion()}
@@ -37,8 +49,8 @@ class Header extends Component {
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
-                                <Link className="nav-link" to="/login">Login</Link>
-                                <Link className="nav-link" to="/registro">Registro</Link>
+                                <Link className="nav-link" style={estiloEnlace} to="/login">Login</Link>
+                                <Link className="nav-link" style={estiloEnlace} to="/registro">Registro</Link>
                             </React.Fragment>
                         )}
                     </div>
